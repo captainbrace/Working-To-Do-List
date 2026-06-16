@@ -1,6 +1,7 @@
 const userinput = document.getElementById("listitem");
 const list = document.getElementById("submitted-items");
 const update = document.getElementById("update");
+const enter = document.getElementsByClassName("task");
 
 let count =0;
 
@@ -73,18 +74,22 @@ function showall(){
 
 
 function EditTask() {
-    // alert (lastClicked)
-    if (lastClicked < 0) {
+    if (!lastClicked) {
         alert("No task selected! Click a task first.");
         return;
     }
+    userinput.value =lastClicked.firstChild.textContent;
+    alert(" Click Enter when you finish editing." );{once:true}
 
-    let newText = userinput.value.trim();
+    userinput.addEventListener("keydown" , function(e){
+    if (e.key ==="Enter" ) {
+        let newText = userinput.value.trim() ;
 
-    if (newText === "") {
-        alert("Enter new text to update the task.");
-        return;
-    }
+     if (newText === '') {
+          //alert("Enter new text to update the task.");
+         console.log( newText);
+          return;
+     }
 
     lastClicked.firstChild.textContent = newText;
 
@@ -97,7 +102,8 @@ function EditTask() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
     userinput.value = "";
-    saveData();
+    saveData();}
+})
 }
 
 

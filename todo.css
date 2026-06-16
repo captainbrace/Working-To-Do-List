@@ -127,3 +127,9 @@ ul li span{
 ul li span:hover{
     background :rgb(89, 89, 163);
 }
+
+@media (max-width:425px) {
+    button{
+        font-size: 3vw;
+    }
+}
